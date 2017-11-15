@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    canvas {
+        border: 1px solid #3fb;
+        display: block;
+        margin: 100px auto;
+        /*background-color: #3fb;*/
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="cas" width="600" height="400">
+    </canvas>
+    <script>
+    var cas = document.querySelector('#cas');
+    var ctx = cas.getContext('2d');
+    var cw = ctx.canvas.width;
+    var ch = ctx.canvas.height;
+    var starL = 200;
+    var starM = 100;
+    ctx.translate(cw / 2, ch / 2);
+
+    ctx.lineJoin = 'round';
+
+    // little cir1
+    ctx.arc(0, 0, 5, rads(0), rads(360), true);
+
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#3fb';
+    ctx.stroke();
+
+    // little cir2
+    ctx.beginPath();
+
+    ctx.arc(0, 0, 14, rads(0), rads(360), true);
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#3fb';
+    ctx.stroke();
+
+    //star line
+    ctx.beginPath();
+    ctx.moveTo(-starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(starL / 2, Math.tan(rads(30)) * starL / 2);
+
+    ctx.moveTo(starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(-starL / 2, Math.tan(rads(30)) * starL / 2);
+
+    ctx.moveTo(0, starL / 2 / Math.cos(rads(30)));
+    ctx.lineTo(0, -starL / 2 / Math.cos(rads(30)));
+
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // ctx.fill();
+
+    // little star
+    // //
+    //  var angle=0;
+    // setInterval(function() {
+
+    //  ctx.save()
+    //  // ctx.clearRect(-300,-200,600,400);
+
+    //     ctx.rotate(angle+=rads(1));
+
+    //     ctx.beginPath();
+    //     ctx.moveTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+    //     ctx.lineTo(starM / 2, -Math.tan(rads(30)) * starM / 2);
+    //     ctx.lineTo(0, starM / 2 / Math.cos(rads(30)));
+    //     ctx.lineTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+
+    //     ctx.moveTo(-starM / 2, Math.tan(rads(30)) * starM / 2);
+    //     ctx.lineTo(starM / 2, Math.tan(rads(30)) * starM / 2);
+    //     ctx.lineTo(0, -starM / 2 / Math.cos(rads(30)));
+    //     ctx.lineTo(-starM / 2, Math.tan(rads(30)) * starM / 2);
+
+    //     ctx.lineWidth = 2;
+
+    //     ctx.strokeStyle = '#f8a';
+    //     ctx.stroke();
+
+    //     ctx.restore();
+    // }, 100)
+
+
+    ctx.beginPath();
+    ctx.moveTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(starM / 2, -Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(0, starM / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+
+    ctx.moveTo(-starM / 2, Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(starM / 2, Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(0, -starM / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starM / 2, Math.tan(rads(30)) * starM / 2);
+
+    ctx.lineWidth = 2;
+
+    ctx.strokeStyle = '#f8a';
+    ctx.stroke();
+
+    //little out line
+
+    ctx.beginPath();
+    ctx.moveTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(0, -starM / 2 / Math.cos(rads(30)));
+    ctx.lineTo(starM / 2, -Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(starM / 2, Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(0, starM / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starM / 2, Math.tan(rads(30)) * starM / 2);
+    ctx.lineTo(-starM / 2, -Math.tan(rads(30)) * starM / 2);
+
+    ctx.lineWidth = 1;
+
+    ctx.stroke();
+
+    // little out cir
+
+    ctx.beginPath();
+    ctx.arc(0, 0, (starM - 5) / 2 / Math.cos(rads(30)), rads(0), rads(360));
+
+    ctx.lineWidth = 3;
+
+    ctx.stroke();
+
+    // star
+    ctx.beginPath();
+    ctx.moveTo(-starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(0, starL / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starL / 2, -Math.tan(rads(30)) * starL / 2);
+
+    ctx.moveTo(-starL / 2, Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(starL / 2, Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(0, -starL / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starL / 2, Math.tan(rads(30)) * starL / 2);
+
+    ctx.lineWidth = 3;
+
+    ctx.strokeStyle = '#8fb';
+
+    ctx.stroke();
+
+    ctx.fillStyle='rgba(136,255,187,0.2)';
+    ctx.fill();
+
+
+    //out line
+
+    ctx.beginPath();
+    ctx.moveTo(-starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(0, -starL / 2 / Math.cos(rads(30)));
+    ctx.lineTo(starL / 2, -Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(starL / 2, Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(0, starL / 2 / Math.cos(rads(30)));
+    ctx.lineTo(-starL / 2, Math.tan(rads(30)) * starL / 2);
+    ctx.lineTo(-starL / 2, -Math.tan(rads(30)) * starL / 2);
+
+    ctx.lineWidth = 1;
+
+
+    ctx.stroke();
+    // ctx.fillStyle='rgba(36,25,87,0.2)';
+    // ctx.fill();
+    //out cir
+
+    ctx.beginPath();
+    ctx.arc(0, 0, starL / 2 / Math.cos(rads(30)), rads(0), rads(360));
+
+    ctx.lineWidth = 3;
+
+    ctx.stroke();
+
+    //out cir blod
+    ctx.beginPath();
+    ctx.arc(0, 0, starL / 2 / Math.cos(rads(30)) + 18, rads(0), rads(360));
+
+    ctx.lineWidth = 14;
+
+    ctx.stroke();
+
+    // radius words
+    var cir={x:0,y:0,radius:starL / 2 / Math.cos(rads(30)) + 15}
+    var str="YoU wEre tHE sHaDOw tO mY lIGht diD yOU fIlL uS? ANotHEr sTAr yOu fAdE aWay."
+    drawCirText(cir, str, rads(-220), rads(40), 'left');
+
+    //out cir2 
+    ctx.beginPath();
+    ctx.arc(0, 0, starL / 2 / Math.cos(rads(30)) + 32, rads(0), rads(360));
+
+    ctx.lineWidth = 2;
+
+    ctx.stroke();
+
+    // six cir
+    ctx.lineWidth = 2;
+
+
+    // 1
+    ctx.strokeStyle = '#f33'
+    ctx.beginPath()
+    ctx.arc(-starM / 2, -Math.tan(rads(30)) * starM / 2, 10, rads(0), rads(360))
+    ctx.stroke();
+
+    //2
+    ctx.strokeStyle = '#5f5'
+    ctx.beginPath()
+    ctx.arc(0, -starM / 2 / Math.cos(rads(30)), 13, rads(0), rads(360))
+    ctx.stroke();
+
+    //3
+    ctx.strokeStyle = '#77f'
+    ctx.beginPath()
+    ctx.arc(starM / 2, -Math.tan(rads(30)) * starM / 2, 12, rads(0), rads(360))
+    ctx.stroke();
+
+    //4
+    ctx.strokeStyle = '#9f9'
+    ctx.beginPath()
+    ctx.arc(starM / 2, Math.tan(rads(30)) * starM / 2, 15, rads(0), rads(360))
+    ctx.stroke();
+
+    //5
+    ctx.strokeStyle = '#fbb'
+    ctx.beginPath()
+    ctx.arc(0, starM / 2 / Math.cos(rads(30)), 14, rads(0), rads(360))
+    ctx.stroke();
+
+    //6
+    ctx.strokeStyle = '#df0'
+    ctx.beginPath()
+    ctx.arc(-starM / 2, Math.tan(rads(30)) * starM / 2, 17, rads(0), rads(360))
+    ctx.stroke();
+
+
+
+
+
+
+
+
+
+
+
+// console.log(-cw+50,-ch+50)
+    // background
+        //cir 
+    ctx.beginPath();
+    ctx.rect(-cw/2+20,-ch/2+20,cw-40,ch-40)
+
+    ctx.lineWidth = 15;
+
+    ctx.strokeStyle='#afb';
+    ctx.stroke();
+
+    ctx.moveTo(starL / 2 / Math.cos(rads(30)) + 40,0)
+    ctx.arc(0, 0, starL / 2 / Math.cos(rads(30)) + 40, rads(0), rads(360),true);
+    ctx.lineWidth = 3;
+
+    ctx.fillStyle='#afb'
+    ctx.fill();
+
+
+    //dash
+    ctx.beginPath();
+    ctx.moveTo(-cw/2+30,-ch/2+30);
+    ctx.lineTo(cw/2-30,-ch/2+30);
+    ctx.lineTo(cw/2-30,ch/2-30);
+    ctx.lineTo(-cw/2+30,ch/2-30);
+    ctx.lineTo(-cw/2+30,-ch/2+30);
+    ctx.setLineDash([10,10])
+    ctx.strokeStyle='#fff';
+    ctx.stroke()
+
+
+
+
+    function rads(a) {
+        return Math.PI / 180 * a;
+    }
+
+    /**
+     * [drawCirText 弧形文字]
+     * @param  {[type]} cir        [圆{x:,y:,radius:}]
+     * @param  {[type]} str        [文字]
+     * @param  {[type]} startAngle [开始弧度]
+     * @param  {[type]} endAngle   [结束弧度]
+     * @param  {[type]} lv         [文字对齐方式]
+     * @return {[type]}            [description]
+     */
+    function drawCirText(cir, str, startAngle, endAngle, lv) {
+        var radius = cir.radius,
+            angleDecrement = (startAngle - endAngle) / (str.length - 1),
+            angle = parseFloat(startAngle),
+            index = 0,
+            character;
+
+        ctx.save()
+
+        ctx.fillStyle = '#fff';
+        ctx.font = '9px 微软雅黑';
+        ctx.textAlign = lv;
+        ctx.textBaselne = 'middle';
+
+        while (index < str.length) {
+            character = str.charAt(index);
+
+            ctx.save()
+
+            ctx.beginPath();
+            ctx.translate(cir.x + Math.cos(angle) * radius, cir.y + Math.sin(angle) * radius);
+            ctx.rotate(Math.PI / 2 + angle);
+            ctx.fillText(character, 0, 0);
+
+            angle -= angleDecrement;
+            index++;
+
+            ctx.restore()
+        }
+        ctx.restore()
+
+    }
+    </script>
+</body>
+
+</html>
